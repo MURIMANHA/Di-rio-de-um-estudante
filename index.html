@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Diário de um Estudante</title>
+  <meta name="description" content="Blog responsivo de um estudante do Fundamental II com dicas de leitura, treinos, notícias, versículo diário e receitas fit." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0f172a; /* slate-900 */
+      --card:#111827ee; /* gray-900 */
+      --muted:#94a3b8; /* slate-400 */
+      --text:#e5e7eb;  /* gray-200 */
+      --brand:#22c55e; /* green-500 */
+      --brand-2:#60a5fa; /* blue-400 */
+      --ring: 0 0 0 4px rgba(96,165,250,.35);
+      --radius: 18px;
+      --shadow: 0 8px 24px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;
+      background: linear-gradient(180deg, #0b1224, #0f172a 40%, #0b1224 100%);
+      color:var(--text);
+    }
+    /* Header */
+    header{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter:saturate(160%) blur(10px);
+      background: rgba(2,6,23,.65);
+      border-bottom:1px solid rgba(148,163,184,.15);
+    }
+    .container{max-width:1100px; margin:0 auto; padding:0 16px}
+    nav{display:flex; align-items:center; justify-content:space-between; gap:16px; height:64px}
+    .brand{display:flex; align-items:center; gap:10px; font-weight:700; letter-spacing:.2px}
+    .brand .logo{width:36px; height:36px; border-radius:12px; background:linear-gradient(135deg,var(--brand),var(--brand-2)); display:grid; place-items:center; box-shadow: var(--shadow)}
+    .brand .logo span{font-size:18px; color:white}
+    .menu{display:flex; gap:14px; flex-wrap:wrap}
+    .menu a{color:var(--text); text-decoration:none; font-weight:600; font-size:14px; opacity:.9; padding:10px 12px; border-radius:12px}
+    .menu a:hover{background:rgba(148,163,184,.12)}
+
+    /* Mobile nav */
+    .hamb{display:none; background:none; border:1px solid rgba(148,163,184,.2); color:var(--text); padding:8px 12px; border-radius:12px}
+    @media (max-width: 860px){
+      .menu{display:none}
+      .hamb{display:inline-flex}
+      .menu.open{display:flex; flex-direction:column; width:100%; padding:10px 0}
+      nav{flex-wrap:wrap; height:auto; padding:10px 0}
+    }
+
+    /* Hero */
+    .hero{padding:48px 0 24px}
+    .hero .wrap{display:grid; grid-template-columns: 1.2fr .8fr; gap:22px; align-items:center}
+    .badge{display:inline-flex; align-items:center; gap:8px; font-size:12px; padding:6px 10px; border-radius:999px; background:rgba(34,197,94,.15); color:#bbf7d0; border:1px solid rgba(34,197,94,.35)}
+    h1{margin:10px 0 8px; font-size:clamp(28px, 5vw, 42px)}
+    .sub{color:var(--muted); line-height:1.65}
+    .hero-card{background:var(--card); border:1px solid rgba(148,163,184,.15); padding:18px; border-radius: var(--radius); box-shadow: var(--shadow)}
+
+    .hero {
+  text-align: center;
+  margin-top: -40px; /* sobe o texto */
+}
+
+.hero-img {
+  width: 80%;           /* ocupa 80% da largura da tela */
+  max-width: 600px;     /* limite máximo */
+  border-radius: 20px;  /* arredonda as bordas */
+  margin-top: 20px;     /* espaço entre o título e a imagem */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3); /* sombra suave opcional */
+}
+
+
+    /* Sections */
+    section{padding:28px 0}
+    .section-title{display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:14px}
+    .section-title h2{margin:0; font-size:22px}
+    .grid{display:grid; grid-template-columns: repeat(3, 1fr); gap:16px}
+
+/* Destaques: menos apertado — até 2 colunas em telas grandes, 1 em telas pequenas */
+#highlights{
+  display:grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap:20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+
+/* Ajustes específicos para os cards dentro dos destaques */
+#highlights .card{
+  padding:14px;
+  min-height:220px;
+}
+
+/* Ajustes responsivos */
+@media (max-width: 900px){ .hero .wrap{grid-template-columns:1fr} .grid{grid-template-columns: 1fr 1fr} #highlights{grid-template-columns: 1fr} }
+@media (max-width: 560px){ .grid{grid-template-columns:1fr} }
+    @media (max-width: 900px){ .hero .wrap{grid-template-columns:1fr} .grid{grid-template-columns: 1fr 1fr} }
+    @media (max-width: 560px){ .grid{grid-template-columns:1fr} }
+
+    .card{background:var(--card); border:1px solid rgba(148,163,184,.15); border-radius:var(--radius); overflow:hidden; display:flex; flex-direction:column; transition: transform .2s ease, box-shadow .2s ease}
+    .card:hover{transform: translateY(-2px); box-shadow:0 10px 30px rgba(0,0,0,.4)}
+    .thumb{aspect-ratio:16/9; background:linear-gradient(135deg, rgba(96,165,250,.25), rgba(34,197,94,.25)); display:grid; place-items:center; font-weight:700}
+    .content{padding:14px 16px}
+    .content h3{margin:0 0 6px; font-size:18px}
+    .meta{font-size:12px; color:var(--muted)}
+    .tags{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px}
+    .tag{font-size:11px; padding:4px 8px; background:rgba(96,165,250,.12); border:1px solid rgba(96,165,250,.35); color:#dbeafe; border-radius:999px}
+
+    /* Verse box */
+    .verse-box{display:grid; gap:10px; background:linear-gradient(180deg, rgba(96,165,250,.12), rgba(34,197,94,.10)); border:1px solid rgba(148,163,184,.25); border-radius: var(--radius); padding:16px}
+    .verse-text{font-size:16px}
+    .actions{display:flex; gap:10px; flex-wrap:wrap}
+    .btn{cursor:pointer; border:none; padding:10px 14px; border-radius:12px; font-weight:600}
+    .btn.primary{background:linear-gradient(135deg,var(--brand),var(--brand-2)); color:white}
+    .btn.ghost{background:transparent; color:var(--text); border:1px solid rgba(148,163,184,.25)}
+    .btn:focus{outline:none; box-shadow:var(--ring)}
+
+    /* Contact */
+    form{display:grid; gap:12px}
+    input, textarea{width:100%; padding:12px 14px; color:var(--text); background:#0b1224; border:1px solid rgba(148,163,184,.25); border-radius:12px}
+    textarea{min-height:120px; resize:vertical}
+    label{font-size:13px; color:var(--muted)}
+
+    /* Footer */
+    footer{border-top:1px solid rgba(148,163,184,.15); margin-top:36px; padding:24px 0; color:var(--muted)}
+    .footer-grid{display:grid; grid-template-columns:1fr auto; gap:12px; align-items:center}
+    .social{display:flex; gap:12px}
+    .social a{color:var(--muted); text-decoration:none; padding:8px 10px; border-radius:10px; border:1px solid transparent}
+    .social a:hover{border-color:rgba(148,163,184,.25)}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="brand">
+          <div class="logo"><span>📚</span></div>
+          <span>Diário de um Estudante</span>
+        </div>
+        <button class="hamb" id="hamb">Menu</button>
+        <div class="menu" id="menu">
+          <a href="#inicio">Início</a>
+          <a href="#leituras">Leituras</a>
+          <a href="#treinos">Treinos</a>
+          <a href="#noticias">Notícias</a>
+          <a href="#versiculo">Versículo do Dia</a>
+          <a href="#receitas">Receitas Fit</a>
+          <a href="#contato">Contato</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- HERO / INTRO -->
+    <section id="inicio" class="hero">
+      <div class="wrap">
+        <div>
+          <span class="badge">Bem-vindo! Conteúdo novo toda semana ✨</span>
+          <h1>Estudos, treinos, fé e saúde — tudo que um estudante vive de verdade.</h1>
+            <img src="https://i.pinimg.com/736x/b4/6c/bc/b46cbc6f36911eaa0f4263422762762e.jpg" 
+            alt="Estudos e treinos"
+            class="hero-img">
+
+          <p class="sub">Eu sou o Murilo (Fundamental II). Aqui eu compartilho <strong>dicas de leitura</strong>, <strong>treinos práticos</strong>, <strong>notícias que importam</strong>, um <strong>versículo diário</strong> pra fortalecer, e <strong>receitas fit</strong> fáceis e saborosas.</p>
+        </div>
+        <div class="hero-card">
+          <h3 style="margin:0 0 8px">Últimos destaques</h3>
+          <div id="highlights" class="grid"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LEITURAS -->
+    <section id="leituras">
+      <div class="section-title">
+        <h2>Leituras</h2>
+        <div class="actions">
+          <input id="search" placeholder="Buscar posts... (ex: Harry Potter)" aria-label="Buscar" />
+          <button class="btn ghost" id="clearSearch">Limpar</button>
+        </div>
+      </div>
+      <div id="grid-leituras" class="grid"></div>
+    </section>
+
+    <!-- TREINOS -->
+    <section id="treinos">
+      <div class="section-title"><h2>Treinos</h2></div>
+      <div id="grid-treinos" class="grid"></div>
+    </section>
+
+    <!-- NOTÍCIAS -->
+    <section id="noticias">
+      <div class="section-title"><h2>Notícias importantes</h2></div>
+      <div id="grid-noticias" class="grid"></div>
+    </section>
+
+    <!-- VERSÍCULO DO DIA -->
+    <section id="versiculo">
+      <div class="section-title"><h2>Versículo do dia</h2></div>
+      <div class="verse-box">
+        <div id="verse" class="verse-text">Carregando versículo…</div>
+        <div class="actions">
+          <button class="btn primary" id="newVerse">Outro versículo</button>
+          <button class="btn ghost" id="copyVerse">Copiar</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- RECEITAS FIT -->
+    <section id="receitas">
+      <div class="section-title"><h2>Receitas Fit</h2></div>
+      <div id="grid-receitas" class="grid"></div>
+    </section>
+
+    <!-- CONTATO -->
+    <section id="contato">
+      <div class="section-title"><h2>Contato</h2></div>
+      <form id="contactForm">
+        <div>
+          <label for="nome">Nome</label>
+          <input id="nome" name="nome" placeholder="Seu nome" required />
+        </div>
+        <div>
+          <label for="email">E-mail</label>
+          <input id="email" name="email" type="email" placeholder="seu@email.com" required />
+        </div>
+        <div>
+          <label for="msg">Mensagem</label>
+          <textarea id="msg" name="mensagem" placeholder="Escreva sua mensagem…" required></textarea>
+        </div>
+        <div class="actions">
+          <button class="btn primary" type="submit">Enviar</button>
+          <button class="btn ghost" type="reset">Limpar</button>
+        </div>
+        <small id="formStatus" aria-live="polite"></small>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <div>© <span id="year"></span> Diário de um Estudante — Feito com foco, fé e café ☕</div>
+      <div class="social">
+        <a href="#" aria-label="Instagram">Instagram</a>
+        <a href="#" aria-label="YouTube">YouTube</a>
+        <a href="#" aria-label="GitHub">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ========= DADOS DE EXEMPLO =========
+    const posts = {
+      leituras: [
+        {title:'Por onde começar: Harry Potter ou Percy Jackson?', date:'2025-08-12', tags:['fantasia','adolescente'], excerpt:'Comparo o ritmo, humor e tamanho de capítulos pra decidir qual pegar primeiro.', cover:'HP vs PJ'},
+        {title:'Clássico sem tédio: O Cão dos Baskerville', date:'2025-07-05', tags:['sherlock','mistério'], excerpt:'Como entrar em Sherlock Holmes sem travar no inglês antigo.', cover:'Sherlock'},
+        {title:'Dica rápida: 1984 sem dormir no capítulo 1', date:'2025-06-14', tags:['distopia','clássico'], excerpt:'3 estratégias pra entender o mundo do livro logo de cara.', cover:'1984'},
+      ],
+      treinos: [
+        {title:'Sequência relâmpago pro vôlei', date:'2025-08-30', tags:['vôlei','aquecimento'], excerpt:'5 min de mobilidade + 10 min de fundamento + 5 min de velocidade.', cover:'Vôlei'},
+        {title:'Corrida na areia: guia de 4 km', date:'2025-09-01', tags:['corrida','praia'], excerpt:'Ritmos, respiração e cadência pra não quebrar.', cover:'Corrida'},
+        {title:'Força em casa sem equipamento', date:'2025-07-18', tags:['calistenia'], excerpt:'Circuito de 12 minutos focado em core e pernas.', cover:'Treino em casa'},
+      ],
+      noticias: [
+        {title:'Edital do simulado escolar publicado', date:'2025-08-28', tags:['escola','provas'], excerpt:'Datas, regras e como se inscrever pelo app.', cover:'Provas'},
+        {title:'Abertas as vagas do clube de leitura', date:'2025-08-20', tags:['leitura','clube'], excerpt:'Encontros semanais e sorteio de livros.', cover:'Clube'},
+        {title:'Campeonato interclasses confirmado', date:'2025-08-10', tags:['esportes'], excerpt:'Inscrições por turma e regulamento atualizado.', cover:'Interclasses'},
+      ],
+      receitas: [
+        {title:'Cookie fit de frigideira', date:'2025-08-16', tags:['aveia','chocolate'], excerpt:'Pronto em 7 minutos, crocante por fora e macio por dentro.', cover:'Cookie fit'},
+        {title:'Iogurte grego com kiwi e granola', date:'2025-09-03', tags:['lanche','rápido'], excerpt:'Combo perfeito antes do vôlei.', cover:'Kiwi granola'},
+        {title:'Rap10 proteico no micro-ondas', date:'2025-07-02', tags:['prático','noite'], excerpt:'Recheio salgado e queijo derretido sem bagunça.', cover:'Rap10'},
+      ],
+    };
+
+    // ========= UTIL =========
+    const $ = (sel,ctx=document)=>ctx.querySelector(sel);
+    const $$ = (sel,ctx=document)=>Array.from(ctx.querySelectorAll(sel));
+
+    function formatDate(iso){
+      const d = new Date(iso);
+      return d.toLocaleDateString('pt-BR', { year:'numeric', month:'short', day:'2-digit' });
+    }
+
+    function createCard({title, date, tags, excerpt, cover}){
+      const el = document.createElement('article');
+      el.className = 'card';
+      el.innerHTML = `
+        <div class="thumb">${cover || 'Post'}</div>
+        <div class="content">
+          <h3>${title}</h3>
+          <div class="meta">${formatDate(date)}</div>
+          <p class="sub" style="margin:8px 0 0">${excerpt}</p>
+          <div class="tags">${(tags||[]).map(t=>`<span class="tag">#${t}</span>`).join('')}</div>
+        </div>
+      `;
+      return el;
+    }
+
+    function renderSection(key, gridId){
+      const grid = document.getElementById(gridId);
+      grid.innerHTML = '';
+      posts[key]
+        .sort((a,b)=> new Date(b.date)-new Date(a.date))
+        .forEach(p=> grid.appendChild(createCard(p)));
+    }
+
+    // Destaques (pega o mais recente de cada categoria)
+    function renderHighlights(){
+      const cont = document.getElementById('highlights');
+      cont.innerHTML = '';
+      ['leituras','treinos','noticias','receitas'].forEach(key=>{
+        const latest = [...posts[key]].sort((a,b)=> new Date(b.date)-new Date(a.date))[0];
+        if(latest){ cont.appendChild(createCard(latest)); }
+      });
+    }
+
+    // ========= VERSÍCULO =========
+    const verses = [
+      {t:'"Tudo posso naquele que me fortalece."', r:'Fp 4:13'},
+      {t:'"Confia no Senhor de todo o teu coração."', r:'Pv 3:5'},
+      {t:'"O Senhor é o meu pastor; nada me faltará."', r:'Sl 23:1'},
+      {t:'"Sede fortes e corajosos, não temais."', r:'Js 1:9'},
+      {t:'"Lâmpada para os meus pés é a tua palavra."', r:'Sl 119:105'},
+    ];
+    function pickVerse(){ return verses[Math.floor(Math.random()*verses.length)]; }
+    function showVerse(){ const v = pickVerse(); $('#verse').innerHTML = `${v.t} <br><small style="color:var(--muted)">— ${v.r}</small>`; }
+
+    // ========= BUSCA =========
+    function setupSearch(){
+      const input = document.getElementById('search');
+      const clear = document.getElementById('clearSearch');
+      const grid = document.getElementById('grid-leituras');
+      function filter(){
+        const q = (input.value||'').toLowerCase();
+        grid.innerHTML='';
+        posts.leituras
+          .filter(p => [p.title, p.excerpt, ...(p.tags||[])].join(' ').toLowerCase().includes(q))
+          .forEach(p=> grid.appendChild(createCard(p)));
+      }
+      input.addEventListener('input', filter);
+      clear.addEventListener('click', ()=>{ input.value=''; filter(); input.focus(); });
+    }
+
+    // ========= CONTATO =========
+    function setupForm(){
+      const form = document.getElementById('contactForm');
+      const status = document.getElementById('formStatus');
+      form.addEventListener('submit', (e)=>{
+        e.preventDefault();
+        const data = Object.fromEntries(new FormData(form).entries());
+        // Simulação de envio — aqui você pode integrar com EmailJS, Formspree, etc.
+        console.log('Mensagem enviada:', data);
+        status.textContent = 'Mensagem enviada! (simulação)';
+        form.reset();
+        setTimeout(()=> status.textContent='', 4000);
+      });
+    }
+
+    // ========= MENU MOBILE =========
+    function setupMenu(){
+      const hamb = document.getElementById('hamb');
+      const menu = document.getElementById('menu');
+      hamb.addEventListener('click', ()=> menu.classList.toggle('open'));
+      // Fecha menu ao clicar
+      $$('#menu a').forEach(a=> a.addEventListener('click', ()=> menu.classList.remove('open')));
+    }
+
+    // ========= INIT =========
+    function init(){
+      renderHighlights();
+      renderSection('leituras','grid-leituras');
+      renderSection('treinos','grid-treinos');
+      renderSection('noticias','grid-noticias');
+      renderSection('receitas','grid-receitas');
+      setupSearch();
+      setupForm();
+      setupMenu();
+      showVerse();
+      document.getElementById('newVerse').addEventListener('click', showVerse);
+      document.getElementById('copyVerse').addEventListener('click', async()=>{
+        try{ await navigator.clipboard.writeText($('#verse').innerText); alert('Versículo copiado!'); }
+        catch(err){ alert('Não foi possível copiar.'); }
+      });
+      document.getElementById('year').textContent = new Date().getFullYear();
+    }
+    document.addEventListener('DOMContentLoaded', init);
+  </script>
+</body>
+</html>
